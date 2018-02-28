@@ -5,7 +5,7 @@ import * as CounterActions from '../actions'
 import Header from '../components/Header'
 import '../blog.css'
 import * as BlogAPI from '../utils/BlogAPI'
-
+import Moment from 'react-moment';
 // import Counter from '../components/Counter';
 
 class App extends Component {
@@ -48,7 +48,12 @@ class App extends Component {
               {this.state.posts.map((post) => (
                 <div key={post.id} className="blog-post">
                   <h2 className="blog-post-title">{post.title}</h2>
-                  <p className="blog-post-meta">{post.timestamp} by <a href="#">{post.author}</a></p>
+
+                  <p className="blog-post-meta">
+                    <Moment format="DD/MM/YYYY">
+                      {post.timestamp}
+                    </Moment> by <a href="#">{post.author}</a>
+                  </p>
 
                   <p>{post.body}</p>
                 </div>
