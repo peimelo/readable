@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Header({ title }) {
   return (
@@ -7,7 +8,7 @@ function Header({ title }) {
         <div className="col-4 pt-1">
         </div>
         <div className="col-4 text-center">
-          <a className="blog-header-logo text-dark">{title}</a>
+          <Link className="blog-header-logo text-dark" to="/">{title}</Link>
         </div>
         <div className="col-4 d-flex justify-content-end align-items-center">
         </div>
