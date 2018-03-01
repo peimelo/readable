@@ -1,53 +1,37 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { BrowserRouter, Link } from 'react-router-dom'
+import * as CategoriesActions from '../actions/categories'
 import * as CounterActions from '../actions'
+import Categories from '../components/Categories';
 import Header from '../components/Header'
-import '../blog.css'
 import * as BlogAPI from '../utils/BlogAPI'
-import Moment from 'react-moment';
-
-// import Counter from '../components/Counter';
+import '../blog.css'
 
 class App extends Component {
   state = {
-    categories: [],
     posts: [],
   };
 
   componentDidMount() {
-    BlogAPI.getCategories().then((categories) => {
-      console.log(categories)
-      this.setState({ categories })
-    })
     BlogAPI.getPosts().then((posts) => {
       console.log(posts)
       this.setState({ posts })
     })
+
+    this.props.categoriesActions.fetchCategories()
   }
 
   render() {
+    const { categories } = this.props
     return (
       <BrowserRouter>
         <div>
           <div className="container">
             <Header title="Readable"/>
-
-            <div className="nav-scroller py-1 mb-2">
-              <nav className="nav d-flex justify-content-between">
-                {this.state.categories.map((categorie) => (
-                  <Link
-                    key={categorie.name}
-                    className="p-2 text-muted"
-                    to={categorie.path}
-                  >
-                    {categorie.name}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-
+            <Categories categories={categories} />
           </div>
 
           <main role="main" className="container">
@@ -113,11 +97,13 @@ class App extends Component {
 // }
 
 const mapStateToProps = state => ({
-  counter: state.counter
+  counter: state.counter,
+  categories: state.categories
 })
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(CounterActions, dispatch)
+  actions: bindActionCreators(CounterActions, dispatch),
+  categoriesActions: bindActionCreators(CategoriesActions, dispatch)
 })
 
 export default connect(
