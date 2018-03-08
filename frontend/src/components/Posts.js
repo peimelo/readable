@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment';
+import StarIcon from 'react-icons/lib/fa/star'
 
 function Posts({ posts }) {
   return (
@@ -14,7 +15,9 @@ function Posts({ posts }) {
           <p className="blog-post-meta">
             <Moment format="DD/MM/YYYY">
               {post.timestamp}
-            </Moment> by {post.author}
+            </Moment>&nbsp;
+            | by {post.author}&nbsp;
+            | {post.voteScore} <StarIcon size={15}/>
           </p>
 
           <p>{post.body}</p>
