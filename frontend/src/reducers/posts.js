@@ -1,9 +1,13 @@
-import { RECEIVE_POSTS } from '../actions/posts'
+import {
+  FETCH_CATEGORY_POSTS_SUCCESS,
+  FETCH_POSTS_SUCCESS
+} from '../actions/posts'
 
 function posts(state = [], action) {
   switch (action.type) {
-    case RECEIVE_POSTS:
-      return action.posts
+    case FETCH_POSTS_SUCCESS:
+    case FETCH_CATEGORY_POSTS_SUCCESS:
+      return action.posts;
     default:
       return state
   }

@@ -1,14 +1,15 @@
 import * as BlogAPI from '../utils/BlogAPI'
 
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
+export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
 
-export const receiveCategories = (categories) => ({
-  type: RECEIVE_CATEGORIES,
+export const fetchCategoriesSuccess = (categories) => ({
+  type: FETCH_CATEGORIES_SUCCESS,
   categories
-})
+});
+
 
 export const fetchCategories = () => dispatch => {
   return BlogAPI
     .getCategories()
-    .then(categories => dispatch(receiveCategories(categories)))
-}
+    .then(categories => dispatch(fetchCategoriesSuccess(categories)))
+};
