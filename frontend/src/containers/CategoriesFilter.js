@@ -2,31 +2,41 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { fetchCategories } from '../actions/categories';
+import { categorySelected, fetchCategories } from '../actions/categories';
 import { fetchCategoryPosts } from '../actions/posts';
 
-class Categories extends Component {
+class CategoriesFilter extends Component {
   componentDidMount() {
     this.props.fetchCategories();
   }
 
+  filter = (category) => {
+    this.props.categorySelected(category.name);
+    this.props.fetchCategoryPosts(category.name);
+  }
+
   render() {
-    const { categories, fetchCategoryPosts } = this.props;
+    const { categories } = this.props;
 
     return (
-      <div className="nav-scroller py-1 mb-2">
-        <nav className="nav d-flex justify-content-between">
-          {categories.map((category) => (
+      <div className="p-3">
+        <h4 className="font-italic">Filter by Category</h4>
+        <ol className="list-unstyled">
+          <li>
+          {categories.data.map((category) => (
             <Link
               key={category.name}
-              className="p-2 text-muted"
+              className={categories.categorySelected === category.name ?
+                'btn btn-secondary' :
+                'btn btn-link'}
               to={`/categoriesFilter/${category.path}`}
-              onClick={() => fetchCategoryPosts(category.path)}
+              onClick={() => this.filter(category)}
             >
               {category.name}
             </Link>
           ))}
-        </nav>
+          </li>
+        </ol>
       </div>
     );
   }
@@ -37,6 +47,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
+  categorySelected,
   fetchCategories,
   fetchCategoryPosts
-})(Categories)
+})(CategoriesFilter)

@@ -2,6 +2,7 @@ import * as BlogAPI from '../utils/BlogAPI'
 
 export const FETCH_CATEGORY_POSTS_SUCCESS = 'FETCH_CATEGORY_POSTS_SUCCESS';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
+export const POSTS_ORDER_BY = 'POSTS_ORDER_BY';
 
 export const fetchCategoryPosts = (category) => dispatch => {
   return BlogAPI
@@ -23,5 +24,10 @@ export const fetchPosts = () => dispatch => {
 export const fetchPostsSuccess = (posts) => ({
   type: FETCH_POSTS_SUCCESS,
   posts
+});
+
+export const postsOrderBy = (orderBy) => ({
+  type: POSTS_ORDER_BY,
+  orderBy
 });
 
