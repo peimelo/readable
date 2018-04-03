@@ -1,5 +1,6 @@
 import {
   FETCH_CATEGORY_POSTS_SUCCESS,
+  FETCH_POST_SUCCESS,
   FETCH_POSTS_SUCCESS,
   POSTS_ORDER_BY
 } from '../actions/posts'
@@ -12,16 +13,21 @@ const INITIAL_STATE = {
 
 function posts(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case FETCH_POST_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: action.payload
+      };
     case FETCH_POSTS_SUCCESS:
     case FETCH_CATEGORY_POSTS_SUCCESS:
       return {
         ...state,
-        data: action.posts
+        data: action.payload
       };
     case POSTS_ORDER_BY:
       return {
         ...state,
-        orderBy: action.orderBy
+        orderBy: action.payload
       };
     default:
       return state

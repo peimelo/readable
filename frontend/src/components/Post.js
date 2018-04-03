@@ -11,7 +11,7 @@ import UserIcon from 'react-icons/lib/fa/user';
 function Post({ post }) {
   return (
     <div key={post.id} className="blog-post">
-      <Link to={post.id}>
+      <Link to={`/${post.id}`}>
         <h2 className="blog-post-title">{post.title}</h2>
       </Link>
       <p className="blog-post-meta">

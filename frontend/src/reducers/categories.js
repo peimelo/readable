@@ -13,12 +13,12 @@ function categories(state = INITIAL_STATE, action) {
     case CATEGORY_SELECTED:
       return {
         ...state,
-        categorySelected: action.category
+        categorySelected: action.payload
       };
     case FETCH_CATEGORIES_SUCCESS:
       return {
         ...state,
-        data: action.categories
+        data: action.payload
       };
     default:
       return state;
