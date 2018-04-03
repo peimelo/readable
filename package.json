@@ -4,7 +4,11 @@
     "node": "8.10.0"
   },
   "scripts": {
-    "start": "node api-server/server",
+    "start": "cd api-server/ && npm install && node api-server/server",
     "heroku-postbuild": "cd frontend/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
-  }
+  },
+  "cacheDirectories": [
+    "api-server/node_modules",
+    "frontend/node_modules"
+  ]
 }
