@@ -20,8 +20,8 @@ class PostIndex extends Component {
       fetchCategoryPosts(categoryId);
       categorySelected(categoryId);
     } else {
-      this.props.categorySelected('');
       this.props.fetchPosts();
+      this.props.categorySelected('');
     }
   }
 

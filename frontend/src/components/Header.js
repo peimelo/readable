@@ -1,20 +1,68 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 
-function Header({ title }) {
-  return (
-    <header className="blog-header py-3">
-      <div className="row flex-nowrap justify-content-between align-items-center">
-        <div className="col-4 pt-1">
-        </div>
-        <div className="col-4 text-center">
-          <Link className="blog-header-logo text-dark" to="/">{title}</Link>
-        </div>
-        <div className="col-4 d-flex justify-content-end align-items-center">
-        </div>
+class Header extends Component {
+  state = {
+    isOpen: false
+  };
+
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <Navbar color="faded" light expand="md">
+          <NavbarBrand tag={Link} to='/'>{this.props.title}</NavbarBrand>
+          <NavbarToggler onClick={this.toggle}/>
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink tag={Link} to='/categories'>Categories</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    Option 1
+                  </DropdownItem>
+                  <DropdownItem>
+                    Option 2
+                  </DropdownItem>
+                  <DropdownItem divider/>
+                  <DropdownItem>
+                    Reset
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </Navbar>
       </div>
-    </header>
-  );
+    );
+  }
 }
 
 export default Header

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import EraserIcon from 'react-icons/lib/fa/eraser';
 
 import { categorySelected, fetchCategories } from '../actions/categories';
 import { fetchCategoryPosts } from '../actions/posts';
@@ -10,31 +11,42 @@ class CategoriesFilter extends Component {
     this.props.fetchCategories();
   }
 
-  filter = (category) => {
-    this.props.categorySelected(category.name);
-    this.props.fetchCategoryPosts(category.name);
-  }
+  filter = (categoryName) => {
+    this.props.categorySelected(categoryName);
+    this.props.fetchCategoryPosts(categoryName);
+  };
 
   render() {
     const { categories } = this.props;
 
     return (
       <div className="p-3">
-        <h4 className="font-italic">Filter by Category</h4>
+        <h4 className="font-italic">
+          Filter by Category
+          {categories.categorySelected && (
+            <Link
+              key='eraser'
+              className='btn btn-link'
+              to='/'
+            >
+              <EraserIcon size={15}/>
+            </Link>
+          )}
+        </h4>
         <ol className="list-unstyled">
           <li>
-          {categories.data.map((category) => (
-            <Link
-              key={category.name}
-              className={categories.categorySelected === category.name ?
-                'btn btn-secondary' :
-                'btn btn-link'}
-              to={`/categoriesFilter/${category.path}`}
-              onClick={() => this.filter(category)}
-            >
-              {category.name}
-            </Link>
-          ))}
+            {categories.data.map((category) => (
+              <Link
+                key={category.name}
+                className={categories.categorySelected === category.name ?
+                  'btn btn-secondary' :
+                  'btn btn-link'}
+                to={`/categoriesFilter/${category.path}`}
+                onClick={() => this.filter(category.name)}
+              >
+                {category.name}
+              </Link>
+            ))}
           </li>
         </ol>
       </div>
