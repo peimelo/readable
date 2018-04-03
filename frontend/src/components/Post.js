@@ -1,6 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 import CalendarIcon from 'react-icons/lib/fa/calendar';
 import CommentsIcon from 'react-icons/lib/fa/comments';
 import StarIcon from 'react-icons/lib/fa/star';
@@ -28,5 +29,15 @@ function Post({ post }) {
     </div>
   );
 }
+
+Post.propTypes = {
+  post: PropTypes.shape({
+    title: PropTypes.string,
+    author: PropTypes.string,
+    voteScore: PropTypes.number,
+    category: PropTypes.string,
+    commentCount: PropTypes.number,
+  })
+};
 
 export default Post

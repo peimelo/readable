@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 import Post from './Post'
 
@@ -15,5 +16,9 @@ function PostList({ posts }) {
     </div>
   );
 }
+
+PostList.propTypes = {
+  posts: PropTypes.array
+};
 
 export default PostList

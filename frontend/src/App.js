@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Header title="Readable"/>
+          <Header title="Readable" />
           <Switch>
             <Route path="/" exact component={PostIndex} />
             <Route path="/categoriesFilter/:categoryId" component={props => <PostIndex {...props} />} />

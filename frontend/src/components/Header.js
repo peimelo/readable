@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -64,5 +65,9 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired
+};
 
 export default Header

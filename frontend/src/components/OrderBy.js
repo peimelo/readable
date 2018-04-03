@@ -1,5 +1,7 @@
-import React from 'react'
-import { CREATED_AT, VOTE_SCORE } from '../constants/orderBy'
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { CREATED_AT, VOTE_SCORE } from '../constants/orderBy';
 
 function OrderBy({ orderBy, onChangeOrder }) {
   const orders = [
@@ -29,5 +31,10 @@ function OrderBy({ orderBy, onChangeOrder }) {
     </div>
   );
 }
+
+OrderBy.propTypes = {
+  orderBy: PropTypes.string.isRequired,
+  onChangeOrder: PropTypes.func.isRequired,
+};
 
 export default OrderBy
