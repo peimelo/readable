@@ -19,12 +19,20 @@ export const getCategories = () =>
     headers
   }).then(res => res.data);
 
-export const getCategoryPosts = (category) =>
+export const getCategoryPosts = category =>
   axios({
     method: 'GET',
     url: `${api}/${category}/posts`,
     headers
   }).then(res => res.data);
+
+export const getPost = id =>
+  axios({
+    method: 'GET',
+    url: `${api}/posts/${id}`,
+    headers
+  }).then(res => res.data)
+    .catch(err => console.log(err));
 
 export const getPosts = () =>
   axios({
@@ -32,12 +40,3 @@ export const getPosts = () =>
     url: `${api}/posts`,
     headers
   }).then(res => res.data);
-
-export const getPost = (id) =>
-  axios({
-    method: 'GET',
-    url: `${api}/posts/${id}`,
-    headers
-  })
-    .then(res => res.data)
-    .catch(err => console.log(err));
