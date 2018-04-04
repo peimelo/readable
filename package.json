@@ -5,8 +5,7 @@
   },
   "scripts": {
     "build": "concurrently \"cd api-server && npm install\" \"cd frontend && npm install && npm run build\"",
-    "deploy": "mkdir public && cp -a frontend/build/. public/",
-    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "concurrently": "^3.5.1"
