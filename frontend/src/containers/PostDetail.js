@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchPost } from '../actions/posts';
 import Post from '../components/Post';
+import Comments from '../containers/Comments';
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -18,7 +19,12 @@ class PostDetail extends Component {
     return (
       <div className="container">
         <h1>Post Detail</h1>
-        {post && (<Post post={post} />)}
+        {post && (
+          <div>
+            <Post post={post}/>
+            <Comments postId={post.id}/>
+          </div>
+        )}
       </div>
     );
   }

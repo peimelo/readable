@@ -1,28 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Moment from 'react-moment';
 import PropTypes from 'prop-types';
-import CalendarIcon from 'react-icons/lib/fa/calendar';
 import CommentsIcon from 'react-icons/lib/fa/comments';
-import StarIcon from 'react-icons/lib/fa/star';
 import TagIcon from 'react-icons/lib/fa/tag';
-import UserIcon from 'react-icons/lib/fa/user';
+
+import StarIcon from './StarIcon';
+import TimestampIcon from './TimestampIcon';
+import UserIcon from './UserIcon';
 
 function Post({ post }) {
   return (
     <div key={post.id} className="blog-post">
       <Link to={`/${post.id}`}>
-        <h2 className="blog-post-title">{post.title}</h2>
+        <h2>{post.title}</h2>
       </Link>
       <p className="blog-post-meta">
-        <CalendarIcon size={15}/>&nbsp;
-        <Moment format="DD/MM/YYYY">
-          {post.timestamp}
-        </Moment>&nbsp;
-        | <UserIcon size={15}/> by {post.author}&nbsp;
-        | <StarIcon size={15}/> {post.voteScore}&nbsp;
-        | <TagIcon size={15}/> {post.category}&nbsp;
-        | <CommentsIcon size={15}/> {post.commentCount}
+        <TimestampIcon timestamp={post.timestamp} />
+        <UserIcon author={post.author} />
+        <StarIcon voteScore={post.voteScore} />
+        <TagIcon size={15}/> {post.category} | &nbsp;
+        <CommentsIcon size={15}/> {post.commentCount}
       </p>
 
       <p>{post.body}</p>

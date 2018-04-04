@@ -40,3 +40,10 @@ export const getPosts = () =>
     url: `${api}/posts`,
     headers
   }).then(res => res.data);
+
+export const getComments = (id) =>
+  axios({
+    method: 'GET',
+    url: `${api}/posts/${id}/comments`,
+    headers
+  }).then(res => res.data);
