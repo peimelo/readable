@@ -5,7 +5,7 @@
   },
   "scripts": {
     "build": "cd api-server && npm install && cd .. && cd frontend && npm install && npm run build && cd ..",
-    "deploy": "cp -a frontend/build/. ./",
+    "deploy": "mkdir public && cp -a frontend/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   }
 }
