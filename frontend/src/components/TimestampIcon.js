@@ -6,7 +6,7 @@ import Calendar from 'react-icons/lib/fa/calendar';
 function TimestampIcon({ timestamp }) {
   return (
     <span>
-      <Calendar size={15}/>&nbsp;
+      <Calendar size={15} />&nbsp;
       <Moment format="DD/MM/YYYY">
         {timestamp}
       </Moment> | &nbsp;

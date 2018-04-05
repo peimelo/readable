@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchPost } from '../actions/posts';
+import { fetchPost, votePost } from '../actions/posts';
 import Post from '../components/Post';
 import Comments from '../containers/Comments';
 
@@ -13,6 +13,10 @@ class PostDetail extends Component {
     }
   }
 
+  votePost = (id, vote) => {
+    this.props.votePost(id, vote);
+  };
+
   render() {
     const { post } = this.props;
 
@@ -21,8 +25,12 @@ class PostDetail extends Component {
         <h1>Post Detail</h1>
         {post && (
           <div>
-            <Post post={post}/>
-            <Comments postId={post.id}/>
+            <Post
+              post={post}
+              isDetail={true}
+              onVote={this.votePost}
+            />
+            <Comments postId={post.id} />
           </div>
         )}
       </div>
@@ -36,4 +44,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(mapStateToProps, {
   fetchPost,
+  votePost
 })(PostDetail)

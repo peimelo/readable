@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import sortBy from 'sort-by';
+import { Container, Row, Col } from 'reactstrap';
 
 import CategoriesFilter from './CategoriesFilter';
 import OrderBy from '../components/OrderBy';
-import PostList from '../components/PostList';
+import PostsList from '../components/PostsList';
 import { categorySelected } from '../actions/categories';
 import { fetchCategoryPosts, fetchPosts, postsOrderBy } from '../actions/posts';
 
-class PostIndex extends Component {
+class PostsIndex extends Component {
   componentWillMount() {
     if (this.props.match.params.categoryId) {
       const {
@@ -33,24 +34,20 @@ class PostIndex extends Component {
     this.props.posts.data.sort(sortBy(this.props.posts.orderBy));
 
     return (
-      <div>
-        <div className="container">
-        </div>
-
-        <main role="main" className="container">
-          <div className="row">
-            <PostList posts={this.props.posts.data}/>
-
-            <aside className="col-md-4 blog-sidebar">
-              <OrderBy
-                orderBy={this.props.posts.orderBy}
-                onChangeOrder={this.changeOrder}
-              />
-              <CategoriesFilter />
-            </aside>
-          </div>
-        </main>
-      </div>
+      <Container>
+        <Row>
+          <Col md="8">
+            <PostsList posts={this.props.posts.data} />
+          </Col>
+          <Col md="4">
+            <OrderBy
+              orderBy={this.props.posts.orderBy}
+              onChangeOrder={this.changeOrder}
+            />
+            <CategoriesFilter />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
@@ -64,4 +61,4 @@ export default connect(mapStateToProps, {
   fetchCategoryPosts,
   fetchPosts,
   postsOrderBy
-})(PostIndex)
+})(PostsIndex)

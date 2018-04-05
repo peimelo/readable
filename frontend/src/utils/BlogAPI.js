@@ -12,38 +12,33 @@ const headers = {
   'Authorization': token
 };
 
+axios.defaults.headers.common['Authorization'] = headers;
+
 export const getCategories = () =>
-  axios({
-    method: 'GET',
-    url: `${api}/categories`,
-    headers
-  }).then(res => res.data);
+  axios.get(`${api}/categories`)
+    .then(res => res.data);
 
 export const getCategoryPosts = category =>
-  axios({
-    method: 'GET',
-    url: `${api}/${category}/posts`,
-    headers
-  }).then(res => res.data);
+  axios.get(`${api}/${category}/posts`)
+    .then(res => res.data);
 
 export const getPost = id =>
-  axios({
-    method: 'GET',
-    url: `${api}/posts/${id}`,
-    headers
-  }).then(res => res.data)
+  axios.get(`${api}/posts/${id}`)
+    .then(res => res.data)
     .catch(err => console.log(err));
 
 export const getPosts = () =>
-  axios({
-    method: 'GET',
-    url: `${api}/posts`,
-    headers
-  }).then(res => res.data);
+  axios.get(`${api}/posts`)
+    .then(res => res.data);
 
-export const getComments = (id) =>
-  axios({
-    method: 'GET',
-    url: `${api}/posts/${id}/comments`,
-    headers
-  }).then(res => res.data);
+export const getPostComments = id =>
+  axios.get(`${api}/posts/${id}/comments`)
+    .then(res => res.data);
+
+export const voteComment = (id, vote) =>
+  axios.post(`${api}/comments/${id}`, { option: vote })
+    .then(res => res.data);
+
+export const votePost = (id, vote) =>
+  axios.post(`${api}/posts/${id}`, { option: vote })
+    .then(res => res.data);

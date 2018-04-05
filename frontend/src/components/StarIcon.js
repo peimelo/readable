@@ -5,7 +5,7 @@ import Star from 'react-icons/lib/fa/star';
 function StarIcon({ voteScore }) {
   return (
     <span>
-      <Star size={15}/> {voteScore} | &nbsp;
+      <Star size={15} /> {voteScore} | &nbsp;
     </span>
   );
 }

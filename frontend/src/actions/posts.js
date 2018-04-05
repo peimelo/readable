@@ -1,4 +1,5 @@
 import * as BlogAPI from '../utils/BlogAPI'
+import { fetchPostComments } from './comments';
 
 export const FETCH_CATEGORY_POSTS_SUCCESS = 'FETCH_CATEGORY_POSTS_SUCCESS';
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
@@ -43,3 +44,8 @@ export const postsOrderBy = orderBy => ({
   payload: orderBy
 });
 
+export const votePost = (id, vote) => dispatch => {
+  return BlogAPI
+    .votePost(id, vote)
+    .then(post => dispatch(fetchPost(post.id)))
+};

@@ -5,7 +5,7 @@ import User from 'react-icons/lib/fa/user';
 function UserIcon({ author }) {
   return (
     <span>
-      <User size={15}/> by {author} | &nbsp;
+      <User size={15} /> by {author} | &nbsp;
     </span>
   );
 }
