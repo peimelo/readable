@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchPost, votePost } from '../actions/posts';
 import Post from '../components/Post';
-import Comments from '../containers/Comments';
+import CommentsList from './CommentsList';
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class PostDetail extends Component {
               isDetail={true}
               onVote={this.votePost}
             />
-            <Comments postId={post.id} />
+            <CommentsList postId={post.id} />
           </div>
         )}
       </div>

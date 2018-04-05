@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
-import CategoryIndex from './containers/CategoryIndex';
+import CategoriesIndex from './containers/CategoriesIndex';
 import PostDetail from './containers/PostDetail';
 import PostsIndex from './containers/PostsIndex';
 
@@ -17,7 +17,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={PostsIndex} />
             <Route path="/categoriesFilter/:categoryId" component={props => <PostsIndex {...props} />} />
-            <Route path="/categories" component={props => <CategoryIndex {...props} />} />
+            <Route path="/categories" component={props => <CategoriesIndex {...props} />} />
             <Route path="/:postId" component={props => <PostDetail {...props} />} />
           </Switch>
         </div>

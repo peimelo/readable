@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 import { fetchCategories } from '../actions/categories';
 
-class CategoryIndex extends Component {
+class CategoriesIndex extends Component {
   componentDidMount() {
     this.props.fetchCategories();
   }
 
   render() {
     return (
-      <div className="container">
+      <Container>
         <h1>Categories</h1>
 
         <Table bordered striped hover>
@@ -30,7 +31,7 @@ class CategoryIndex extends Component {
           )}
           </tbody>
         </Table>
-      </div>
+      </Container>
     );
   }
 }
@@ -41,4 +42,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   fetchCategories,
-})(CategoryIndex)
+})(CategoriesIndex)

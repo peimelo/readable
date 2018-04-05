@@ -20,8 +20,8 @@ function Post({ post, isDetail, onVote }) {
         <TimestampIcon timestamp={post.timestamp} />
         <UserIcon author={post.author} />
         <StarIcon voteScore={post.voteScore} />
-        <TagIcon size={15}/> {post.category} | &nbsp;
-        <CommentsIcon size={15}/> {post.commentCount} &nbsp;
+        <TagIcon size={15} /> {post.category} | &nbsp;
+        <CommentsIcon size={15} /> {post.commentCount} &nbsp;
         {isDetail && (
           <UpDownVote onVote={(vote) => onVote(post.id, vote)} />
         )}

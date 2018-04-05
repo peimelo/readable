@@ -14,6 +14,10 @@ const headers = {
 
 axios.defaults.headers.common['Authorization'] = headers;
 
+export const deleteComment = id =>
+  axios.delete(`${api}/comments/${id}`)
+    .then(res => res.data);
+
 export const getCategories = () =>
   axios.get(`${api}/categories`)
     .then(res => res.data);
@@ -27,12 +31,12 @@ export const getPost = id =>
     .then(res => res.data)
     .catch(err => console.log(err));
 
-export const getPosts = () =>
-  axios.get(`${api}/posts`)
-    .then(res => res.data);
-
 export const getPostComments = id =>
   axios.get(`${api}/posts/${id}/comments`)
+    .then(res => res.data);
+
+export const getPosts = () =>
+  axios.get(`${api}/posts`)
     .then(res => res.data);
 
 export const voteComment = (id, vote) =>

@@ -14,8 +14,9 @@ export const categorySelected = (category) => ({
 });
 
 
-export const fetchCategories = () => dispatch => {
-  return BlogAPI
-    .getCategories()
-    .then(data => dispatch(fetchCategoriesSuccess(data.categories)))
-};
+export function fetchCategories() {
+  return dispatch => {
+    return BlogAPI.getCategories()
+      .then(data => dispatch(fetchCategoriesSuccess(data.categories)))
+  }
+}
