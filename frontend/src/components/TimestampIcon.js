@@ -9,7 +9,7 @@ function TimestampIcon({ timestamp }) {
       <Calendar size={15} />&nbsp;
       <Moment format="DD/MM/YYYY">
         {timestamp}
-      </Moment> | &nbsp;
+      </Moment>
     </span>
   );
 }

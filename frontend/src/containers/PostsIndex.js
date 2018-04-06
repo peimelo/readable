@@ -10,7 +10,7 @@ import { categorySelected } from '../actions/categories';
 import { fetchCategoryPosts, fetchPosts, postsOrderBy } from '../actions/posts';
 
 class PostsIndex extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.match.params.categoryId) {
       const {
         categorySelected,
@@ -36,10 +36,10 @@ class PostsIndex extends Component {
     return (
       <Container>
         <Row>
-          <Col md="8">
+          <Col md={8} xs={12}>
             <PostsList posts={this.props.posts.data} />
           </Col>
-          <Col md="4">
+          <Col md={4} xs={12}>
             <OrderBy
               orderBy={this.props.posts.orderBy}
               onChangeOrder={this.changeOrder}

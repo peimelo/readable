@@ -6,6 +6,7 @@ import { Button, Container } from 'reactstrap';
 import New from 'react-icons/lib/fa/file';
 
 import {
+  clearComments,
   deleteComment,
   fetchPostComments,
   voteComment
@@ -14,6 +15,7 @@ import Comment from '../components/Comment';
 
 class CommentsList extends Component {
   componentDidMount() {
+    this.props.clearComments();
     this.props.fetchPostComments(this.props.postId);
   }
 
@@ -59,6 +61,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+  clearComments,
   deleteComment,
   fetchPostComments,
   voteComment

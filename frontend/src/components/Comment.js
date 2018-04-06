@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup, Container, Row } from 'reactstrap';
+import { Button, ButtonGroup, Container, Col, Row } from 'reactstrap';
 import Edit from 'react-icons/lib/fa/pencil';
 import Trash from 'react-icons/lib/fa/trash';
 
@@ -13,27 +13,36 @@ function Comment({ comment, onDelete, onVote }) {
   return (
     <Container>
       <Row className="blog-post-meta">
-        <TimestampIcon timestamp={comment.timestamp} />
-        <UserIcon author={comment.author} />
-        <StarIcon voteScore={comment.voteScore} />
-        <UpDownVote
-          id={comment.id}
-          onVote={(vote) => onVote(comment.id, vote)}
-        >
-        </UpDownVote>
-        &nbsp;
-        <ButtonGroup>
-          <Button color="warning"><Edit size={15} /></Button>
-          <Button
-            color="danger"
-            onClick={() => onDelete(comment.id)}
+        <Col xs={6} md={'auto'}>
+          <TimestampIcon timestamp={comment.timestamp} />
+        </Col>
+        <Col xs={6} md={'auto'}>
+          <UserIcon author={comment.author} />
+        </Col>
+        <Col xs={3} md={'auto'}>
+          <StarIcon voteScore={comment.voteScore} />
+        </Col>
+        <Col xs={4} md={'auto'}>
+          <UpDownVote
+            id={comment.id}
+            onVote={(vote) => onVote(comment.id, vote)}
           >
-            <Trash size={15} />
-          </Button>
-        </ButtonGroup>
+          </UpDownVote>
+        </Col>
+        <Col xs={5} md={'auto'}>
+          <ButtonGroup>
+            <Button color="warning"><Edit size={15} /></Button>
+            <Button
+              color="danger"
+              onClick={() => onDelete(comment.id)}
+            >
+              <Trash size={15} />
+            </Button>
+          </ButtonGroup>
+        </Col>
       </Row>
       <Row>
-        {comment.body}
+        <Col>{comment.body}</Col>
       </Row>
       <hr />
     </Container>

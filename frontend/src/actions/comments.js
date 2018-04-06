@@ -1,7 +1,12 @@
 import * as BlogAPI from '../utils/BlogAPI'
 import { fetchPost } from './posts';
 
+export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
+
+export const clearComments = () => ({
+  type: CLEAR_COMMENTS,
+});
 
 export function deleteComment(id) {
   return dispatch => {
