@@ -5,6 +5,12 @@ export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const POSTS_ORDER_BY = 'POSTS_ORDER_BY';
 
+export function deletePost(id) {
+  return dispatch => {
+    return BlogAPI.deletePost(id)
+  }
+}
+
 export const fetchCategoryPosts = category => dispatch => {
   return BlogAPI
     .getCategoryPosts(category)

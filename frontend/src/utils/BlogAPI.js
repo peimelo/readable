@@ -18,6 +18,10 @@ export const deleteComment = id =>
   axios.delete(`${api}/comments/${id}`)
     .then(res => res.data);
 
+export const deletePost = id =>
+  axios.delete(`${api}/posts/${id}`)
+    .then(res => res.data);
+
 export const getCategories = () =>
   axios.get(`${api}/categories`)
     .then(res => res.data);

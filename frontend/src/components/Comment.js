@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup, Container, Col, Row } from 'reactstrap';
-import Edit from 'react-icons/lib/fa/pencil';
-import Trash from 'react-icons/lib/fa/trash';
+import { Container, Col, Row } from 'reactstrap';
 
 import StarIcon from './StarIcon';
 import TimestampIcon from './TimestampIcon';
 import UserIcon from './UserIcon';
 import UpDownVote from './UpDownVote';
+import EditAndDelete from './EditAndDelete';
 
 function Comment({ comment, onDelete, onVote }) {
   return (
@@ -30,15 +29,11 @@ function Comment({ comment, onDelete, onVote }) {
           </UpDownVote>
         </Col>
         <Col xs={5} md={'auto'}>
-          <ButtonGroup>
-            <Button color="warning"><Edit size={15} /></Button>
-            <Button
-              color="danger"
-              onClick={() => onDelete(comment.id)}
-            >
-              <Trash size={15} />
-            </Button>
-          </ButtonGroup>
+          <EditAndDelete
+            id={comment.id}
+            onDelete={(id) => onDelete(id)}
+          >
+          </EditAndDelete>
         </Col>
       </Row>
       <Row>

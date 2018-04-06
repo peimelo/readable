@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Container } from 'reactstrap';
 
-import { fetchPost, votePost } from '../actions/posts';
+import { deletePost, fetchPost, votePost } from '../actions/posts';
 import Post from '../components/Post';
 import CommentsList from './CommentsList';
 
@@ -13,6 +14,11 @@ class PostDetail extends Component {
     }
   }
 
+  deletePost = (id) => {
+    this.props.deletePost(id)
+      .then(() => this.props.history.push('/'));
+  };
+
   votePost = (id, vote) => {
     this.props.votePost(id, vote);
   };
@@ -21,19 +27,20 @@ class PostDetail extends Component {
     const { post } = this.props;
 
     return (
-      <div className="container">
+      <Container>
         <h1>Post Detail</h1>
         {post && (
           <div>
             <Post
               post={post}
               isDetail={true}
+              onDelete={this.deletePost}
               onVote={this.votePost}
             />
             <CommentsList postId={post.id} />
           </div>
         )}
-      </div>
+      </Container>
     );
   }
 }
@@ -43,6 +50,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default connect(mapStateToProps, {
+  deletePost,
   fetchPost,
   votePost
 })(PostDetail)

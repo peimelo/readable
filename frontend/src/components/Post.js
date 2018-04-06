@@ -9,13 +9,25 @@ import StarIcon from './StarIcon';
 import TimestampIcon from './TimestampIcon';
 import UserIcon from './UserIcon';
 import UpDownVote from './UpDownVote';
+import EditAndDelete from './EditAndDelete';
 
-function Post({ post, isDetail, onVote }) {
+function Post({ post, isDetail, onDelete, onVote }) {
   return (
     <div key={post.id} className="blog-post">
-      <Link to={`/${post.id}`}>
-        <h2>{post.title}</h2>
-      </Link>
+      <Row>
+        <Link to={`/${post.id}`}>
+          <h2>
+            {`${post.title} `}
+            {isDetail && (
+              <EditAndDelete
+                id={post.id}
+                onDelete={(id) => onDelete(id)}
+              >
+              </EditAndDelete>
+            )}
+          </h2>
+        </Link>
+      </Row>
       <Row className="blog-post-meta">
         <Col xs={5} md={'auto'}>
           <TimestampIcon timestamp={post.timestamp} />
@@ -38,7 +50,9 @@ function Post({ post, isDetail, onVote }) {
           )}
         </Col>
       </Row>
-      <Row><Col>{post.body}</Col></Row>
+      <Row>
+        <Col>{post.body}</Col>
+      </Row>
     </div>
   );
 }
@@ -51,6 +65,7 @@ Post.propTypes = {
     category: PropTypes.string,
     commentCount: PropTypes.number,
   }),
+  onDelete: PropTypes.func,
   onVote: PropTypes.func,
   isDetail: PropTypes.bool
 };
