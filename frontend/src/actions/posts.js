@@ -30,28 +30,34 @@ export function editPost(post) {
   }
 }
 
-export const fetchCategoryPosts = category => dispatch => {
-  return BlogAPI
-    .getCategoryPosts(category)
-    .then(posts => dispatch(fetchCategoryPostsSuccess(posts)))
-};
+export function fetchCategoryPosts(category) {
+  return dispatch => {
+    return BlogAPI
+      .getCategoryPosts(category)
+      .then(posts => dispatch(fetchCategoryPostsSuccess(posts)))
+  }
+}
 
 export const fetchCategoryPostsSuccess = posts => ({
   type: FETCH_CATEGORY_POSTS_SUCCESS,
   payload: posts
 });
 
-export const fetchPost = id => dispatch => {
-  return BlogAPI
-    .getPost(id)
-    .then(post => dispatch(fetchPostSuccess(post)))
-};
+export function fetchPost(id) {
+  return dispatch => {
+    return BlogAPI
+      .getPost(id)
+      .then(post => dispatch(fetchPostSuccess(post)))
+  }
+}
 
-export const fetchPosts = () => dispatch => {
-  return BlogAPI
-    .getPosts()
-    .then(posts => dispatch(fetchPostsSuccess(posts)))
-};
+export function fetchPosts() {
+  return dispatch => {
+    return BlogAPI
+      .getPosts()
+      .then(posts => dispatch(fetchPostsSuccess(posts)))
+  }
+}
 
 export const fetchPostSuccess = post => ({
   type: FETCH_POST_SUCCESS,
@@ -68,8 +74,10 @@ export const postsOrderBy = orderBy => ({
   payload: orderBy
 });
 
-export const votePost = (id, vote) => dispatch => {
-  return BlogAPI
-    .votePost(id, vote)
-    .then(post => dispatch(fetchPost(post.id)))
-};
+export function votePost(id, vote) {
+  return dispatch => {
+    return BlogAPI
+      .votePost(id, vote)
+      .then(post => dispatch(fetchPost(post.id)))
+  }
+}

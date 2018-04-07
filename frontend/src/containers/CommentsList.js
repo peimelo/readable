@@ -12,6 +12,7 @@ import {
   voteComment
 } from '../actions/comments';
 import Comment from '../components/Comment';
+import { Link } from 'react-router-dom';
 
 class CommentsList extends Component {
   componentDidMount() {
@@ -28,14 +29,20 @@ class CommentsList extends Component {
   };
 
   render() {
-    const { comments } = this.props;
+    const { comments, postId } = this.props;
     comments.data.sort(sortBy('-voteScore'));
 
     return (
       <Container>
         <h3>
           Comments&nbsp;
-          <Button color="success"><New size={15}/></Button>
+          <Button
+            tag={Link}
+            to={`/posts/${postId}/comments/new`}
+            color="success"
+          >
+            <New size={15}/>
+          </Button>
         </h3>
         <hr/>
         {comments.data.map((comment) => (

@@ -1,46 +1,59 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup, UncontrolledTooltip } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Edit from 'react-icons/lib/fa/pencil';
 import Trash from 'react-icons/lib/fa/trash';
 
-function EditAndDelete({ id, onDelete }) {
-  return (
-    <ButtonGroup>
-      <Button
-        id={'edit-' + id}
-        color="warning"
-        tag={Link}
-        to={`/posts/${id}/edit`}
-      >
-        <Edit size={15} />
-      </Button>
-      <UncontrolledTooltip
-        placement="top"
-        target={'edit-' + id}
-      >
-        Edit
-      </UncontrolledTooltip>
-      <Button
-        id={'delete-' + id}
-        color="danger"
-        onClick={() => onDelete(id)}
-      >
-        <Trash size={15} />
-      </Button>
-      <UncontrolledTooltip
-        placement="top"
-        target={'delete-' + id}
-      >
-        Delete
-      </UncontrolledTooltip>
-    </ButtonGroup>
-  );
+class EditAndDelete extends Component {
+  getId() {
+    const { commentId, postId } = this.props;
+    return commentId ? commentId : postId;
+  }
+
+  render() {
+    const { commentId, postId, onDelete } = this.props;
+
+    return (
+      <ButtonGroup>
+        <Button
+          id={'edit-' + this.getId()}
+          color="warning"
+          tag={Link}
+          to={commentId ?
+            `/posts/${postId}/comments/${commentId}/edit` :
+            `/posts/${postId}/edit`
+          }
+        >
+          <Edit size={15} />
+        </Button>
+        <UncontrolledTooltip
+          placement="top"
+          target={'edit-' + this.getId()}
+        >
+          Edit
+        </UncontrolledTooltip>
+        <Button
+          id={'delete-' + this.getId()}
+          color="danger"
+          onClick={() => onDelete(this.getId())}
+        >
+          <Trash size={15} />
+        </Button>
+        <UncontrolledTooltip
+          placement="top"
+          target={'delete-' + this.getId()}
+        >
+          Delete
+        </UncontrolledTooltip>
+      </ButtonGroup>
+    );
+  }
 }
 
 EditAndDelete.propTypes = {
-  id: PropTypes.string,
+  postId: PropTypes.string.isRequired,
+  commentId: PropTypes.string,
   onDelete: PropTypes.func.isRequired
 };
 

@@ -21,7 +21,7 @@ function Post({ post, isDetail, onDelete, onVote }) {
           </Link>
           {isDetail && (
             <EditAndDelete
-              id={post.id}
+              postId={post.id}
               onDelete={(id) => onDelete(id)}
             >
             </EditAndDelete>
@@ -51,7 +51,7 @@ function Post({ post, isDetail, onDelete, onVote }) {
         </Col>
       </Row>
       <Row>
-        <Col>{post.body}</Col>
+        <Col className='blog-description'>{post.body}</Col>
       </Row>
     </div>
   );

@@ -108,7 +108,13 @@ class PostForm extends Component {
           <Button color="primary">Submit</Button>
         </Form>
         <br />
-        <Button onClick={() => history.push(`/posts/${post.id}`)}>
+        <Button onClick={() => {
+          if (isEditing) {
+            history.push(`/posts/${post.id}`)
+          } else {
+            history.push('/')
+          }
+        }}>
           Cancel
         </Button>
       </Container>
@@ -124,9 +130,8 @@ PostForm.defaultProps = {
   isEditing: true,
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   categories: state.categories,
-  post: state.posts[ownProps.match.params.postId]
 });
 
 export default connect(mapStateToProps, {

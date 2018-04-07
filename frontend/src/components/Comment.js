@@ -30,7 +30,8 @@ function Comment({ comment, onDelete, onVote }) {
         </Col>
         <Col xs={5} md={'auto'}>
           <EditAndDelete
-            id={comment.id}
+            commentId={comment.id}
+            postId={comment.parentId}
             onDelete={(id) => onDelete(id)}
           >
           </EditAndDelete>

@@ -1,5 +1,6 @@
 import * as BlogAPI from '../utils/BlogAPI'
 import { fetchPost } from './posts';
+import uuid from 'uuid/v4';
 
 export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
@@ -8,6 +9,19 @@ export const clearComments = () => ({
   type: CLEAR_COMMENTS,
 });
 
+export function createComment(comment, postId) {
+  comment = {
+    ...comment,
+    id: uuid(),
+    parentId: postId,
+    timestamp: Date.now()
+  };
+
+  return dispatch => {
+    return BlogAPI.createComment(comment)
+  }
+}
+
 export function deleteComment(id) {
   return dispatch => {
     return BlogAPI.deleteComment(id)
@@ -15,6 +29,18 @@ export function deleteComment(id) {
         dispatch(fetchPost(comment.parentId));
         return dispatch(fetchPostComments(comment.parentId))
       })
+  }
+}
+
+export function editComment(comment) {
+  return dispatch => {
+    return BlogAPI.editComment(comment)
+  }
+}
+
+export function fetchComment(id) {
+  return dispatch => {
+    return BlogAPI.getComment(id)
   }
 }
 
