@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup, UncontrolledTooltip } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Edit from 'react-icons/lib/fa/pencil';
 import Trash from 'react-icons/lib/fa/trash';
 
@@ -10,6 +11,8 @@ function EditAndDelete({ id, onDelete }) {
       <Button
         id={'edit-' + id}
         color="warning"
+        tag={Link}
+        to={`/posts/${id}/edit`}
       >
         <Edit size={15} />
       </Button>

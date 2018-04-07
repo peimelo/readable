@@ -15,18 +15,18 @@ function Post({ post, isDetail, onDelete, onVote }) {
   return (
     <div key={post.id} className="blog-post">
       <Row>
-        <Link to={`/${post.id}`}>
-          <h2>
+        <h2>
+          <Link to={`/posts/${post.id}`}>
             {`${post.title} `}
-            {isDetail && (
-              <EditAndDelete
-                id={post.id}
-                onDelete={(id) => onDelete(id)}
-              >
-              </EditAndDelete>
-            )}
-          </h2>
-        </Link>
+          </Link>
+          {isDetail && (
+            <EditAndDelete
+              id={post.id}
+              onDelete={(id) => onDelete(id)}
+            >
+            </EditAndDelete>
+          )}
+        </h2>
       </Row>
       <Row className="blog-post-meta">
         <Col xs={5} md={'auto'}>

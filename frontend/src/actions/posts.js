@@ -1,13 +1,32 @@
 import * as BlogAPI from '../utils/BlogAPI'
+import uuid from 'uuid/v4'
 
 export const FETCH_CATEGORY_POSTS_SUCCESS = 'FETCH_CATEGORY_POSTS_SUCCESS';
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const POSTS_ORDER_BY = 'POSTS_ORDER_BY';
 
+export function createPost(post) {
+  post = {
+    ...post,
+    id: uuid(),
+    timestamp: Date.now()
+  };
+
+  return dispatch => {
+    return BlogAPI.createPost(post)
+  }
+}
+
 export function deletePost(id) {
   return dispatch => {
     return BlogAPI.deletePost(id)
+  }
+}
+
+export function editPost(post) {
+  return dispatch => {
+    return BlogAPI.editPost(post)
   }
 }
 

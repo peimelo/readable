@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
+  Button,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -25,17 +26,47 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light expand="md" className='navbar-light bg-light'>
-          <NavbarBrand tag={Link} to='/'>{this.props.title}</NavbarBrand>
-          <NavbarToggler onClick={this.toggle}/>
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+        <Navbar
+          color="faded"
+          light expand="md"
+          className='navbar-light bg-light'
+        >
+          <NavbarBrand
+            tag={Link}
+            to='/'
+          >
+            {this.props.title}
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse
+            isOpen={this.state.isOpen}
+            navbar
+          >
+            <Nav
+              className="ml-auto"
+              navbar
+            >
               <NavItem>
-                <NavLink tag={Link} to='/categories'>Categories</NavLink>
+                <Button
+                  tag={Link}
+                  to='/posts/new'
+                  color="primary"
+                >
+                  New Post
+                </Button>
               </NavItem>
               <NavItem>
                 <NavLink
-                  href="https://github.com/peimelo/readable">GitHub</NavLink>
+                  tag={Link}
+                  to='/categories'
+                >
+                  Categories
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/peimelo/readable">
+                  GitHub
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>

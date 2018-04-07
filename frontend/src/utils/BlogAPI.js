@@ -14,12 +14,20 @@ const headers = {
 
 axios.defaults.headers.common['Authorization'] = headers;
 
+export const createPost = post =>
+  axios.post(`${api}/posts`, post)
+    .then(res => res.data);
+
 export const deleteComment = id =>
   axios.delete(`${api}/comments/${id}`)
     .then(res => res.data);
 
 export const deletePost = id =>
   axios.delete(`${api}/posts/${id}`)
+    .then(res => res.data);
+
+export const editPost = post =>
+  axios.put(`${api}/posts/${post.id}`, post)
     .then(res => res.data);
 
 export const getCategories = () =>
