@@ -18,13 +18,13 @@ class App extends Component {
           <Header title="Readable" />
           <Switch>
             <Route path="/" exact component={PostsIndex} />
-            <Route path="/categories" component={props => <CategoriesIndex {...props} />} />
+            <Route path="/categories" exact component={props => <CategoriesIndex {...props} />} />
             <Route path="/:category/:postId/comments/:commentId/edit" component={props => <CommentForm {...props} />} />
             <Route path="/:category/:postId/edit" component={props => <PostForm {...props} />} />
             <Route path="/:category/:postId/comments/new" component={props => <CommentForm {...props} isEditing={false} />} />
             <Route path="/posts/new" exact component={props => <PostForm {...props} isEditing={false} />} />
             <Route path="/:category/:postId" exact component={props => <PostDetail {...props} />} />
-            <Route path="/:category" exact component={props => <PostsIndex {...props} />} />
+            <Route path="/:category" component={props => <PostsIndex {...props} />} />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>

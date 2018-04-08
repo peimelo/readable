@@ -11,15 +11,15 @@ import { fetchCategoryPosts, fetchPosts, postsOrderBy } from '../actions/posts';
 
 class PostsIndex extends Component {
   componentDidMount() {
-    if (this.props.match.params.categoryId) {
+    if (this.props.match.params.category) {
       const {
         categorySelected,
         fetchCategoryPosts,
-        match: { params: { categoryId } }
+        match: { params: { category } }
       } = this.props;
 
-      fetchCategoryPosts(categoryId);
-      categorySelected(categoryId);
+      fetchCategoryPosts(category);
+      categorySelected(category);
     } else {
       this.props.fetchPosts();
       this.props.categorySelected('');
