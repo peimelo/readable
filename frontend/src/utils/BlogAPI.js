@@ -11,7 +11,6 @@ const headers = {
   'Accept': 'application/json',
   'Authorization': token
 };
-
 axios.defaults.headers.common['Authorization'] = headers;
 
 // Categories

@@ -7,7 +7,6 @@ import PostDetail from './containers/PostDetail';
 import PostsIndex from './containers/PostsIndex';
 import CommentForm from './containers/CommentForm';
 import PostForm from './containers/PostForm';
-
 import './blog.css'
 
 class App extends Component {
@@ -18,7 +17,7 @@ class App extends Component {
           <Header title="Readable" />
           <Switch>
             <Route path="/" exact component={PostsIndex} />
-            <Route path="/categoriesFilter/:categoryId" component={props => <PostsIndex {...props} />} />
+            <Route path="/:categoryId/posts" component={props => <PostsIndex {...props} />} />
             <Route path="/categories" component={props => <CategoriesIndex {...props} />} />
             <Route path="/posts/:postId/comments/:commentId/edit" component={props => <CommentForm {...props} />} />
             <Route path="/posts/:postId/edit" component={props => <PostForm {...props} />} />

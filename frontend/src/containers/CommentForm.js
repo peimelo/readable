@@ -11,13 +11,13 @@ import {
 } from 'reactstrap';
 
 import { createComment, editComment, fetchComment } from '../actions/comments';
+import TitleForm from '../components/TitleForm';
 
 class CommentForm extends Component {
   state = {
     comment: {
       author: '',
       body: '',
-      parentId: ''
     }
   };
 
@@ -67,13 +67,12 @@ class CommentForm extends Component {
   };
 
   render() {
-    const { history, isEditing, match: { params: { postId } } } = this.props;
+    const { history, isEditing, match: { params: { postId } }} = this.props;
     const { comment } = this.state;
 
     return (
       <Container>
-        <h1>{isEditing ? 'Editing ' : 'New '} Comment</h1>
-
+        <TitleForm isEditing={isEditing} resource='Comment' />
         <Form onSubmit={this.handleFormSubmit}>
           <FormGroup>
             <Label for="author">Author</Label>
@@ -124,4 +123,3 @@ export default connect(null, {
   editComment,
   fetchComment,
 })(CommentForm)
-

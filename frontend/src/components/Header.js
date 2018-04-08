@@ -29,11 +29,11 @@ class Header extends Component {
         <Navbar
           color="faded"
           light expand="md"
-          className='navbar-light bg-light'
+          className="navbar-light bg-light"
         >
           <NavbarBrand
             tag={Link}
-            to='/'
+            to="/"
           >
             {this.props.title}
           </NavbarBrand>
@@ -49,7 +49,7 @@ class Header extends Component {
               <NavItem>
                 <Button
                   tag={Link}
-                  to='/posts/new'
+                  to="/posts/new"
                   color="primary"
                 >
                   New Post
@@ -58,7 +58,15 @@ class Header extends Component {
               <NavItem>
                 <NavLink
                   tag={Link}
-                  to='/categories'
+                  to="/"
+                >
+                  Home
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  tag={Link}
+                  to="/categories"
                 >
                   Categories
                 </NavLink>

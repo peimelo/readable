@@ -33,8 +33,7 @@ function Comment({ comment, onDelete, onVote }) {
             commentId={comment.id}
             postId={comment.parentId}
             onDelete={(id) => onDelete(id)}
-          >
-          </EditAndDelete>
+          />
         </Col>
       </Row>
       <Row>

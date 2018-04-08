@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import sortBy from 'sort-by';
-import { Button, Container } from 'reactstrap';
+import { Button, Container, UncontrolledTooltip } from 'reactstrap';
 import New from 'react-icons/lib/fa/file';
+import { Link } from 'react-router-dom';
 
 import {
   clearComments,
@@ -12,7 +13,6 @@ import {
   voteComment
 } from '../actions/comments';
 import Comment from '../components/Comment';
-import { Link } from 'react-router-dom';
 
 class CommentsList extends Component {
   componentDidMount() {
@@ -37,12 +37,19 @@ class CommentsList extends Component {
         <h3>
           Comments&nbsp;
           <Button
+            id="newComment"
             tag={Link}
             to={`/posts/${postId}/comments/new`}
             color="success"
           >
             <New size={15}/>
           </Button>
+          <UncontrolledTooltip
+            placement="top"
+            target="newComment"
+          >
+            New comment
+          </UncontrolledTooltip>
         </h3>
         <hr/>
         {comments.data.map((comment) => (

@@ -12,6 +12,7 @@ import {
 
 import { fetchCategories } from '../actions/categories';
 import { createPost, editPost, fetchPost } from '../actions/posts';
+import TitleForm from '../components/TitleForm';
 
 class PostForm extends Component {
   state = {
@@ -34,12 +35,14 @@ class PostForm extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    if (this.props.isEditing) {
-      this.props.editPost(this.state.post)
-        .then((post) => this.props.history.push(`/posts/${post.id}`));
+    const { createPost, editPost, history, isEditing } = this.props;
+    const { post } = this.state;
+    if (isEditing) {
+      editPost(post)
+        .then((post) => history.push(`/posts/${post.id}`));
     } else {
-      this.props.createPost(this.state.post)
-        .then(() => this.props.history.push('/'));
+      createPost(post)
+        .then(() => history.push('/'));
     }
   };
 
@@ -60,8 +63,7 @@ class PostForm extends Component {
 
     return (
       <Container>
-        <h1>{isEditing ? 'Editing ' : 'New '} Post</h1>
-
+        <TitleForm isEditing={isEditing} resource='Post'/>
         <Form onSubmit={this.handleFormSubmit}>
           <FormGroup>
             <Label for="title">Title</Label>

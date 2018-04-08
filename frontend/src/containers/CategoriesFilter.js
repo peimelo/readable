@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import EraserIcon from 'react-icons/lib/fa/eraser';
+import { Container } from 'reactstrap';
 
 import { categorySelected, fetchCategories } from '../actions/categories';
 import { fetchCategoryPosts } from '../actions/posts';
@@ -20,16 +21,16 @@ class CategoriesFilter extends Component {
     const { categories } = this.props;
 
     return (
-      <div className="p-3">
+      <Container className="p-3">
         <h4 className="font-italic">
           Filter by Category
           {categories.categorySelected && (
             <Link
-              key='eraser'
-              className='btn btn-link'
-              to='/'
+              key="eraser"
+              className="btn btn-link"
+              to="/"
             >
-              <EraserIcon size={15}/>
+              <EraserIcon size={15} />
             </Link>
           )}
         </h4>
@@ -41,7 +42,7 @@ class CategoriesFilter extends Component {
                 className={categories.categorySelected === category.name ?
                   'btn btn-secondary' :
                   'btn btn-link'}
-                to={`/categoriesFilter/${category.path}`}
+                to={`/${category.path}/posts`}
                 onClick={() => this.filter(category.name)}
               >
                 {category.name}
@@ -49,7 +50,7 @@ class CategoriesFilter extends Component {
             ))}
           </li>
         </ol>
-      </div>
+      </Container>
     );
   }
 }
