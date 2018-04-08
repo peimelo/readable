@@ -21,6 +21,7 @@ export function createPost(post) {
 export function deletePost(id) {
   return dispatch => {
     return BlogAPI.deletePost(id)
+      .then(() => dispatch(fetchPosts()))
   }
 }
 
@@ -78,6 +79,9 @@ export function votePost(id, vote) {
   return dispatch => {
     return BlogAPI
       .votePost(id, vote)
-      .then(post => dispatch(fetchPost(post.id)))
+      .then(post => {
+        dispatch(fetchPosts());
+        return dispatch(fetchPost(post.id))
+      })
   }
 }

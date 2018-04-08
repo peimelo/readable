@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 
-import Post from './Post'
+import Post from '../containers/Post'
 
 function PostsList({ posts }) {
   return (

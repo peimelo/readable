@@ -8,7 +8,7 @@ import UserIcon from './UserIcon';
 import UpDownVote from './UpDownVote';
 import EditAndDelete from './EditAndDelete';
 
-function Comment({ comment, onDelete, onVote }) {
+function Comment({ category, comment, onDelete, onVote }) {
   return (
     <Container>
       <Row className="blog-post-meta">
@@ -30,6 +30,7 @@ function Comment({ comment, onDelete, onVote }) {
         </Col>
         <Col xs={5} md={'auto'}>
           <EditAndDelete
+            category={category}
             commentId={comment.id}
             postId={comment.parentId}
             onDelete={(id) => onDelete(id)}
@@ -45,6 +46,7 @@ function Comment({ comment, onDelete, onVote }) {
 }
 
 Comment.propTypes = {
+  category: PropTypes.string.isRequired,
   comment: PropTypes.shape({
     id: PropTypes.string,
     timestamp: PropTypes.number,

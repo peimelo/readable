@@ -42,7 +42,7 @@ class CategoriesFilter extends Component {
                 className={categories.categorySelected === category.name ?
                   'btn btn-secondary' :
                   'btn btn-link'}
-                to={`/${category.path}/posts`}
+                to={`/${category.path}`}
                 onClick={() => this.filter(category.name)}
               >
                 {category.name}

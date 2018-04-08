@@ -29,7 +29,7 @@ class CommentsList extends Component {
   };
 
   render() {
-    const { comments, postId } = this.props;
+    const { category, comments, postId } = this.props;
     comments.data.sort(sortBy('-voteScore'));
 
     return (
@@ -39,7 +39,7 @@ class CommentsList extends Component {
           <Button
             id="newComment"
             tag={Link}
-            to={`/posts/${postId}/comments/new`}
+            to={`/${category}/${postId}/comments/new`}
             color="success"
           >
             <New size={15}/>
@@ -55,6 +55,7 @@ class CommentsList extends Component {
         {comments.data.map((comment) => (
           <Comment
             key={comment.id}
+            category={category}
             comment={comment}
             onDelete={this.deleteComment}
             onVote={this.voteComment}
@@ -67,6 +68,7 @@ class CommentsList extends Component {
 }
 
 CommentsList.propTypes = {
+  category: PropTypes.string,
   postId: PropTypes.string
 };
 

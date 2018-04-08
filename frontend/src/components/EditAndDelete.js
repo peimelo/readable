@@ -12,7 +12,7 @@ class EditAndDelete extends Component {
   }
 
   render() {
-    const { commentId, postId, onDelete } = this.props;
+    const { category, commentId, postId, onDelete } = this.props;
 
     return (
       <ButtonGroup>
@@ -21,8 +21,8 @@ class EditAndDelete extends Component {
           color="warning"
           tag={Link}
           to={commentId ?
-            `/posts/${postId}/comments/${commentId}/edit` :
-            `/posts/${postId}/edit`
+            `/${category}/${postId}/comments/${commentId}/edit` :
+            `/${category}/${postId}/edit`
           }
         >
           <Edit size={15} />
@@ -52,6 +52,7 @@ class EditAndDelete extends Component {
 }
 
 EditAndDelete.propTypes = {
+  category: PropTypes.string.isRequired,
   postId: PropTypes.string.isRequired,
   commentId: PropTypes.string,
   onDelete: PropTypes.func.isRequired

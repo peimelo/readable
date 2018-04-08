@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
+import NotFound from './components/NotFound';
 import CategoriesIndex from './containers/CategoriesIndex';
 import PostDetail from './containers/PostDetail';
 import PostsIndex from './containers/PostsIndex';
@@ -17,13 +18,14 @@ class App extends Component {
           <Header title="Readable" />
           <Switch>
             <Route path="/" exact component={PostsIndex} />
-            <Route path="/:categoryId/posts" component={props => <PostsIndex {...props} />} />
             <Route path="/categories" component={props => <CategoriesIndex {...props} />} />
-            <Route path="/posts/:postId/comments/:commentId/edit" component={props => <CommentForm {...props} />} />
-            <Route path="/posts/:postId/edit" component={props => <PostForm {...props} />} />
-            <Route path="/posts/:postId/comments/new" component={props => <CommentForm {...props} isEditing={false} />} />
-            <Route path="/posts/new" component={props => <PostForm {...props} isEditing={false} />} />
-            <Route path="/posts/:postId" component={props => <PostDetail {...props} />} />
+            <Route path="/:category/:postId/comments/:commentId/edit" component={props => <CommentForm {...props} />} />
+            <Route path="/:category/:postId/edit" component={props => <PostForm {...props} />} />
+            <Route path="/:category/:postId/comments/new" component={props => <CommentForm {...props} isEditing={false} />} />
+            <Route path="/posts/new" exact component={props => <PostForm {...props} isEditing={false} />} />
+            <Route path="/:category/:postId" exact component={props => <PostDetail {...props} />} />
+            <Route path="/:category" exact component={props => <PostsIndex {...props} />} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </div>
       </Router>

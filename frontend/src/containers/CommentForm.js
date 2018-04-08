@@ -12,13 +12,15 @@ import {
 
 import { createComment, editComment, fetchComment } from '../actions/comments';
 import TitleForm from '../components/TitleForm';
+import NotFound from '../components/NotFound';
 
 class CommentForm extends Component {
   state = {
     comment: {
       author: '',
       body: '',
-    }
+    },
+    isCommentNotFound: false
   };
 
   componentDidMount() {
@@ -30,7 +32,13 @@ class CommentForm extends Component {
 
     if (isEditing && commentId) {
       fetchComment(commentId)
-        .then((comment) => this.setState({ comment }));
+        .then((comment) => {
+          if (Object.keys(comment).length) {
+            this.setState({ comment })
+          } else {
+            this.setState({ isCommentNotFound: true })
+          }
+        });
     }
   }
 
@@ -40,7 +48,7 @@ class CommentForm extends Component {
       editComment,
       history,
       isEditing,
-      match: { params: { postId } }
+      match: { params: { category, postId } }
     } = this.props;
 
     const { comment } = this.state;
@@ -48,10 +56,10 @@ class CommentForm extends Component {
     e.preventDefault();
     if (isEditing) {
       editComment(comment)
-        .then((comment) => history.push(`/posts/${comment.parentId}`));
+        .then((comment) => history.push(`/${category}/${comment.parentId}`));
     } else {
       createComment(comment, postId)
-        .then(() => history.push(`/posts/${postId}`));
+        .then(() => history.push(`/${category}/${postId}`));
     }
   };
 
@@ -67,45 +75,47 @@ class CommentForm extends Component {
   };
 
   render() {
-    const { history, isEditing, match: { params: { postId } }} = this.props;
-    const { comment } = this.state;
+    const { history, isEditing, match: { params: { category, postId } } } = this.props;
+    const { comment, isCommentNotFound } = this.state;
 
     return (
-      <Container>
-        <TitleForm isEditing={isEditing} resource='Comment' />
-        <Form onSubmit={this.handleFormSubmit}>
-          <FormGroup>
-            <Label for="author">Author</Label>
-            <Input
-              id="author"
-              name="author"
-              value={comment.author}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="body">Body</Label>
-            <Input
-              id="body"
-              name="body"
-              value={comment.body}
-              type="textarea"
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <Button color="primary">Submit</Button>
-        </Form>
-        <br />
-        <Button onClick={() => {
-          if (isEditing) {
-            history.push(`/posts/${comment.parentId}`)
-          } else {
-            history.push(`/posts/${postId}`)
-          }
-        }}>
-          Cancel
-        </Button>
-      </Container>
+      isCommentNotFound ?
+        <NotFound /> :
+        <Container>
+          <TitleForm isEditing={isEditing} resource='Comment' />
+          <Form onSubmit={this.handleFormSubmit}>
+            <FormGroup>
+              <Label for="author">Author</Label>
+              <Input
+                id="author"
+                name="author"
+                value={comment.author}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="body">Body</Label>
+              <Input
+                id="body"
+                name="body"
+                value={comment.body}
+                type="textarea"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <Button color="primary">Submit</Button>
+          </Form>
+          <br />
+          <Button onClick={() => {
+            if (isEditing) {
+              history.push(`/${category}/${comment.parentId}`)
+            } else {
+              history.push(`/${category}/${postId}`)
+            }
+          }}>
+            Cancel
+          </Button>
+        </Container>
     );
   }
 }

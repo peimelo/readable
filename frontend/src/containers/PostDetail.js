@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
 
-import { deletePost, fetchPost, votePost } from '../actions/posts';
-import Post from '../components/Post';
+import { deletePost, fetchPost } from '../actions/posts';
+import Post from './Post';
 import CommentsList from './CommentsList';
+import NotFound from '../components/NotFound';
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -19,28 +20,28 @@ class PostDetail extends Component {
       .then(() => this.props.history.push('/'));
   };
 
-  votePost = (id, vote) => {
-    this.props.votePost(id, vote);
-  };
-
   render() {
     const { post } = this.props;
 
     return (
-      <Container>
-        <h1>Post Detail</h1>
-        {post && (
-          <div>
-            <Post
-              post={post}
-              isDetail={true}
-              onDelete={this.deletePost}
-              onVote={this.votePost}
-            />
-            <CommentsList postId={post.id} />
-          </div>
-        )}
-      </Container>
+      !post ?
+        <NotFound /> :
+        <Container>
+          <h1>Post Detail</h1>
+          {post && (
+            <div>
+              <Post
+                post={post}
+                isDetail={true}
+                onDelete={this.deletePost}
+              />
+              <CommentsList
+                category={post.category}
+                postId={post.id}
+              />
+            </div>
+          )}
+        </Container>
     );
   }
 }
@@ -52,5 +53,4 @@ const mapStateToProps = (state, ownProps) => ({
 export default connect(mapStateToProps, {
   deletePost,
   fetchPost,
-  votePost
 })(PostDetail)
