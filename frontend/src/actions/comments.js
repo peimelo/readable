@@ -2,12 +2,7 @@ import * as BlogAPI from '../utils/BlogAPI'
 import { fetchPost } from './posts';
 import uuid from 'uuid/v4';
 
-export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
-
-export const clearComments = () => ({
-  type: CLEAR_COMMENTS,
-});
 
 export function createComment(comment, postId) {
   comment = {
@@ -44,15 +39,15 @@ export function fetchComment(id) {
   }
 }
 
-export const fetchCommentsSuccess = comments => ({
+export const fetchCommentsSuccess = (comments, postId) => ({
   type: FETCH_COMMENTS_SUCCESS,
-  payload: comments
+  payload: { comments, postId }
 });
 
 export function fetchPostComments(postId) {
   return dispatch => {
     return BlogAPI.getPostComments(postId)
-      .then(comments => dispatch(fetchCommentsSuccess(comments)))
+      .then(comments => dispatch(fetchCommentsSuccess(comments, postId)))
   }
 }
 

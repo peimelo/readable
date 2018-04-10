@@ -8,7 +8,7 @@ function PostsList({ posts }) {
   return (
     <Row>
       <Col>
-        {posts.map((post) => (
+        {posts && posts.map((post) => (
           <Post
             key={post.id}
             post={post}

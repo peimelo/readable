@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 
 import { fetchCategories } from '../actions/categories';
 
-class CategoriesIndex extends Component {
+class Categories extends Component {
   componentDidMount() {
     this.props.fetchCategories();
   }
@@ -42,4 +42,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   fetchCategories,
-})(CategoriesIndex)
+})(Categories)

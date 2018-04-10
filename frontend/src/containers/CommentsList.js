@@ -7,7 +7,6 @@ import New from 'react-icons/lib/fa/file';
 import { Link } from 'react-router-dom';
 
 import {
-  clearComments,
   deleteComment,
   fetchPostComments,
   voteComment
@@ -16,7 +15,6 @@ import Comment from '../components/Comment';
 
 class CommentsList extends Component {
   componentDidMount() {
-    this.props.clearComments();
     this.props.fetchPostComments(this.props.postId);
   }
 
@@ -30,7 +28,6 @@ class CommentsList extends Component {
 
   render() {
     const { category, comments, postId } = this.props;
-    comments.data.sort(sortBy('-voteScore'));
 
     return (
       <Container>
@@ -52,7 +49,7 @@ class CommentsList extends Component {
           </UncontrolledTooltip>
         </h3>
         <hr/>
-        {comments.data.map((comment) => (
+        {comments && comments.map((comment) => (
           <Comment
             key={comment.id}
             category={category}
@@ -72,12 +69,11 @@ CommentsList.propTypes = {
   postId: PropTypes.string
 };
 
-const mapStateToProps = (state) => ({
-  comments: state.comments
+const mapStateToProps = (state, ownProps) => ({
+  comments: state.comments[ownProps.postId] && state.comments[ownProps.postId].sort(sortBy('-voteScore'))
 });
 
 export default connect(mapStateToProps, {
-  clearComments,
   deleteComment,
   fetchPostComments,
   voteComment
