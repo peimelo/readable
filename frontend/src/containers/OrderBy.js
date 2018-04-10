@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { CREATED_AT, VOTE_SCORE } from '../constants/orderBy';
-import { postsOrderBy } from '../actions/posts';
+import { postsOrderBy } from '../actions/layout';
 
 class OrderBy extends Component {
   changeOrder = (orderBy) => {
@@ -41,7 +41,7 @@ class OrderBy extends Component {
 }
 
 const mapStateToProps = state => ({
-  orderBy: state.posts.orderBy,
+  orderBy: state.layout.orderBy,
 });
 
 export default connect(mapStateToProps, {

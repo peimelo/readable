@@ -1,12 +1,14 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
-import categories from './categories'
-import comments from './comments'
-import posts from './posts'
+import categories from './categories';
+import comments from './comments';
+import layout from './layout';
+import posts from './posts';
 
 const rootReducer = combineReducers({
   categories,
   comments,
+  layout,
   posts,
 });
 

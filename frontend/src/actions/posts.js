@@ -4,7 +4,6 @@ import uuid from 'uuid/v4'
 export const FETCH_CATEGORY_POSTS_SUCCESS = 'FETCH_CATEGORY_POSTS_SUCCESS';
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
-export const POSTS_ORDER_BY = 'POSTS_ORDER_BY';
 
 export function createPost(post) {
   post = {
@@ -68,11 +67,6 @@ export const fetchPostSuccess = post => ({
 export const fetchPostsSuccess = posts => ({
   type: FETCH_POSTS_SUCCESS,
   payload: posts
-});
-
-export const postsOrderBy = orderBy => ({
-  type: POSTS_ORDER_BY,
-  payload: orderBy
 });
 
 export function votePost(id, vote) {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import sortBy from 'sort-by';
 
 import { categorySelected } from '../actions/categories';
-import { fetchCategoryPosts, fetchPosts, postsOrderBy } from '../actions/posts';
+import { fetchCategoryPosts } from '../actions/posts';
 import PostsIndex from '../components/PostsIndex';
 
 class CategoryPosts extends Component {
@@ -25,16 +25,18 @@ class CategoryPosts extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  orderBy: state.posts.orderBy,
-  posts: state.posts.data.length ?
-    state.posts.data.sort(sortBy(state.posts.orderBy)) :
-    [],
-});
+function mapStateToProps(state) {
+  const posts = state.posts.data.length ?
+    state.posts.data.sort(sortBy(state.layout.orderBy)) :
+    [];
+
+  return {
+    orderBy: state.layout.orderBy,
+    posts
+  }
+}
 
 export default connect(mapStateToProps, {
   categorySelected,
   fetchCategoryPosts,
-  fetchPosts,
-  postsOrderBy
 })(CategoryPosts)

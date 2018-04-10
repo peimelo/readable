@@ -19,12 +19,16 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  orderBy: state.posts.orderBy,
-  posts: state.posts.data.length ?
-    state.posts.data.sort(sortBy(state.posts.orderBy)) :
-    [],
-});
+function mapStateToProps(state) {
+  const posts = state.posts.data.length ?
+    state.posts.data.sort(sortBy(state.layout.orderBy)) :
+    [];
+
+  return {
+    orderBy: state.layout.orderBy,
+    posts
+  }
+}
 
 export default connect(mapStateToProps, {
   categorySelected,
