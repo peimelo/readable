@@ -7,11 +7,7 @@ if (!token) {
   token = localStorage.token = Math.random().toString(36).substr(-8);
 }
 
-const headers = {
-  'Accept': 'application/json',
-  'Authorization': token
-};
-axios.defaults.headers.common['Authorization'] = headers;
+axios.defaults.headers.common['Authorization'] = token;
 
 // Categories
 export const getCategories = () =>
