@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'reactstrap';
-import { Container } from 'reactstrap';
-
+import { Container, Table } from 'reactstrap';
 import { fetchCategories } from '../actions/categories';
+
+const secretApi = process.env.REACT_APP_MY_SECRET_API || 'apiNotWork';
 
 class Categories extends Component {
   componentDidMount() {
@@ -13,22 +13,22 @@ class Categories extends Component {
   render() {
     return (
       <Container>
-        <h1>Categories</h1>
+        <h1>Categories - {secretApi}</h1>
 
         <Table bordered striped hover>
           <thead className="thead-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Path</th>
-          </tr>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Path</th>
+            </tr>
           </thead>
           <tbody>
-          {this.props.categories.data.map((category) =>
-            <tr key={category.name}>
-              <td>{category.name}</td>
-              <td>{category.path}</td>
-            </tr>
-          )}
+            {this.props.categories.data.map(category => (
+              <tr key={category.name}>
+                <td>{category.name}</td>
+                <td>{category.path}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Container>
@@ -37,9 +37,9 @@ class Categories extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories,
+  categories: state.categories
 });
 
 export default connect(mapStateToProps, {
-  fetchCategories,
-})(Categories)
+  fetchCategories
+})(Categories);
