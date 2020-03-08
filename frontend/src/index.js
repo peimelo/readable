@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 
 import App from './App';
 import reducer from './reducers'
-import registerServiceWorker from './registerServiceWorker';
+import * as serviceWorker from './serviceWorker';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -25,4 +25,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-registerServiceWorker();
+serviceWorker.unregister();
