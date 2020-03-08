@@ -13,7 +13,7 @@ class Categories extends Component {
   render() {
     return (
       <Container>
-        <h1>Categories - {secretApi}</h1>
+        <h1>{secretApi}</h1>
 
         <Table bordered striped hover>
           <thead className="thead-dark">
