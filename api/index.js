@@ -4,17 +4,15 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./config');
 
-const outputPath = '../public';
-
 const categoriesRouter = require('./routes/categories.router');
 const commentsRouter = require('./routes/comments.router');
 const postsRouter = require('./routes/posts.router');
 
 const app = express();
 
-app.use(express.static(outputPath));
+app.use(express.static('public', { root: __dirname }));
 app.get('/*', (req, res) => {
-  res.sendFile(`${outputPath}/index.html`);
+  res.sendFile('public/index.html', { root: __dirname });
 });
 app.use(cors());
 
