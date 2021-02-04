@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Container } from 'reactstrap';
+import React from 'react';
+import { connect } from 'react-redux';
 import {
-  Button,
-  Form,
+  Button, Container, Form,
   FormGroup,
-  Label,
-  Input,
+
+  Input, Label
 } from 'reactstrap';
-
 import { createComment, editComment, fetchComment } from '../actions/comments';
-import TitleForm from '../components/TitleForm';
 import NotFound from '../components/NotFound';
+import TitleForm from '../components/TitleForm';
 
-class CommentForm extends Component {
+
+class CommentForm extends React.Component {
   state = {
     comment: {
       author: '',

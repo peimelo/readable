@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup, UncontrolledTooltip } from 'reactstrap';
+import React, { Component } from 'react';
+import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Edit from 'react-icons/lib/fa/pencil';
-import Trash from 'react-icons/lib/fa/trash';
+import { Button, ButtonGroup, UncontrolledTooltip } from 'reactstrap';
 
 class EditAndDelete extends Component {
   getId() {
@@ -25,7 +24,7 @@ class EditAndDelete extends Component {
             `/${category}/${postId}/edit`
           }
         >
-          <Edit size={15} />
+          <FaPencilAlt size={15} />
         </Button>
         <UncontrolledTooltip
           placement="top"
@@ -38,7 +37,7 @@ class EditAndDelete extends Component {
           color="danger"
           onClick={() => onDelete(this.getId())}
         >
-          <Trash size={15} />
+          <FaTrash size={15} />
         </Button>
         <UncontrolledTooltip
           placement="top"

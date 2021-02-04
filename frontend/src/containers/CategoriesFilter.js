@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { FaEraser } from 'react-icons/fa';
 import { connect } from 'react-redux';
-import EraserIcon from 'react-icons/lib/fa/eraser';
+import { Link } from 'react-router-dom';
 import { Container } from 'reactstrap';
-
 import { categorySelected, fetchCategories } from '../actions/categories';
 import { fetchCategoryPosts } from '../actions/posts';
+
 
 class CategoriesFilter extends Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class CategoriesFilter extends Component {
               className="btn btn-link"
               to="/"
             >
-              <EraserIcon size={15} />
+              <FaEraser size={15} />
             </Link>
           )}
         </h4>

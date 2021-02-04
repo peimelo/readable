@@ -1,11 +1,12 @@
-import React from 'react'
 import PropTypes from 'prop-types';
-import { Row, Col } from 'reactstrap';
+import React from 'react';
+import { Col, Container, Row } from 'reactstrap';
+import Post from '../containers/Post';
 
-import Post from '../containers/Post'
 
 function PostsList({ posts }) {
   return (
+    <Container>
     <Row>
       <Col>
         {posts && posts.map((post) => (
@@ -17,6 +18,7 @@ function PostsList({ posts }) {
         ))}
       </Col>
     </Row>
+    </Container>
   );
 }
 

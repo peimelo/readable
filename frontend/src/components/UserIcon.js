@@ -1,11 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import User from 'react-icons/lib/fa/user';
+import React from 'react';
+import { FaUser } from 'react-icons/fa';
 
 function UserIcon({ author }) {
   return (
     <span>
-      <User size={15} /> {author}
+      <FaUser size={15} /> {author}
     </span>
   );
 }

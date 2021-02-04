@@ -1,8 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { FaThumbsDown, FaThumbsUp } from 'react-icons/fa';
 import { Button, ButtonGroup, UncontrolledTooltip } from 'reactstrap';
-import DownVote from 'react-icons/lib/fa/thumbs-down';
-import UpVote from 'react-icons/lib/fa/thumbs-up';
 
 function UpDownVote({ id, onVote }) {
   return (
@@ -11,7 +10,7 @@ function UpDownVote({ id, onVote }) {
         id={'upVote-' + id}
         onClick={() => onVote('upVote')}
       >
-        <UpVote size={15} />
+        <FaThumbsUp size={15} />
       </Button>
       <UncontrolledTooltip
         placement="top"
@@ -23,7 +22,7 @@ function UpDownVote({ id, onVote }) {
         id={'downVote-' + id}
         onClick={() => onVote('downVote')}
       >
-        <DownVote size={15} />
+        <FaThumbsDown size={15} />
       </Button>
       <UncontrolledTooltip
         placement="top"

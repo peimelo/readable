@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { FaFile } from 'react-icons/fa';
 import { connect } from 'react-redux';
-import sortBy from 'sort-by';
-import { Button, Container, UncontrolledTooltip } from 'reactstrap';
-import New from 'react-icons/lib/fa/file';
 import { Link } from 'react-router-dom';
-
+import { Button, Container, UncontrolledTooltip } from 'reactstrap';
+import sortBy from 'sort-by';
 import {
   deleteComment,
   fetchPostComments,
   voteComment
 } from '../actions/comments';
 import Comment from '../components/Comment';
+
 
 class CommentsList extends Component {
   componentDidMount() {
@@ -39,7 +39,7 @@ class CommentsList extends Component {
             to={`/${category}/${postId}/comments/new`}
             color="success"
           >
-            <New size={15}/>
+            <FaFile size={15}/>
           </Button>
           <UncontrolledTooltip
             placement="top"

@@ -1,11 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import Star from 'react-icons/lib/fa/star';
+import React from 'react';
+import { FaStar } from 'react-icons/fa';
 
 function StarIcon({ voteScore }) {
   return (
     <span>
-      <Star size={15} /> {voteScore}
+      <FaStar size={15} /> {voteScore}
     </span>
   );
 }

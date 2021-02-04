@@ -1,5 +1,5 @@
-import * as BlogAPI from '../utils/BlogAPI'
-import uuid from 'uuid/v4'
+import { v4 as uuidv4 } from 'uuid';
+import * as BlogAPI from '../utils/BlogAPI';
 
 export const FETCH_CATEGORY_POSTS_SUCCESS = 'FETCH_CATEGORY_POSTS_SUCCESS';
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
@@ -8,7 +8,7 @@ export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export function createPost(post) {
   post = {
     ...post,
-    id: uuid(),
+    id: uuidv4(),
     timestamp: Date.now()
   };
 

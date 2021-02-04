@@ -1,1 +1,1 @@
-web: node api-server/server
+web: node backend/server

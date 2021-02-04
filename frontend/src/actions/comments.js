@@ -1,13 +1,13 @@
-import * as BlogAPI from '../utils/BlogAPI'
+import { v4 as uuidv4 } from 'uuid';
+import * as BlogAPI from '../utils/BlogAPI';
 import { fetchPost } from './posts';
-import uuid from 'uuid/v4';
 
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 
 export function createComment(comment, postId) {
   comment = {
     ...comment,
-    id: uuid(),
+    id: uuidv4(),
     parentId: postId,
     timestamp: Date.now()
   };

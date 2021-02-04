@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Comments from 'react-icons/lib/fa/comments';
-import Tag from 'react-icons/lib/fa/tag';
-import { Col, Container, Row } from 'reactstrap';
+import React, { Component } from 'react';
+import { FaComments, FaTag } from 'react-icons/fa';
 import { connect } from 'react-redux';
-
+import { Link, withRouter } from 'react-router-dom';
+import { Col, Container, Row } from 'reactstrap';
+import { deletePost, votePost } from '../actions/posts';
+import EditAndDelete from '../components/EditAndDelete';
 import StarIcon from '../components/StarIcon';
 import TimestampIcon from '../components/TimestampIcon';
-import UserIcon from '../components/UserIcon';
 import UpDownVote from '../components/UpDownVote';
-import EditAndDelete from '../components/EditAndDelete';
-import { deletePost, votePost } from '../actions/posts';
+import UserIcon from '../components/UserIcon';
 
 class Post extends Component {
   deletePost = (id) => {
@@ -50,10 +48,10 @@ class Post extends Component {
             <UserIcon author={post.author} />
           </Col>
           <Col xs={'auto'}>
-            <Comments size={15} /> {post.commentCount}
+            <FaComments size={15} /> {post.commentCount}
           </Col>
           <Col xs={'auto'}>
-            <Tag size={15} /> {post.category}
+            <FaTag size={15} /> {post.category}
           </Col>
           <Col xs={'auto'}>
             <StarIcon voteScore={post.voteScore} />

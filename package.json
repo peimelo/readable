@@ -1,10 +1,10 @@
 {
   "name": "readable",
   "engines": {
-    "node": "8.10.0"
+    "node": "14.x.x"
   },
   "scripts": {
-    "build": "concurrently \"cd api-server && npm install\" \"cd frontend && npm install && npm run build\"",
+    "build": "concurrently \"cd backend && npm install\" \"cd frontend && npm install && npm run build\"",
     "deploy": "mkdir public && cp -a frontend/build/. public/",
     "postinstall": "npm run build && npm run deploy"
   },

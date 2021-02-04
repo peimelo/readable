@@ -6,15 +6,15 @@ A blog app with comments.
 
 To get started right away:
 
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `npm start`
-* In another terminal window, install and start the Frontend
-    - `cd frontend`
-    - `npm install`
-    - `npm start`
+- Install and start the API server
+  - `cd backend`
+  - `npm install`
+  - `npm start`
+- In another terminal window, install and start the Frontend
+  - `cd frontend`
+  - `npm install`
+  - `npm start`
 
 ## API Server
 
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+Information about the API server and how to use it can be found in its [README file](backend/README.md).
