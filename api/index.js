@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./config');
 
-const outputPath = `${__dirname}/frontend/build`;
+const outputPath = `${__dirname}/../frontend/build`;
 
 const categoriesRouter = require('./routes/categories.router');
 const commentsRouter = require('./routes/comments.router');
