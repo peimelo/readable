@@ -6,7 +6,7 @@
   "scripts": {
     "build": "concurrently \"cd backend && npm install\" \"cd frontend && npm install && npm run build\"",
     "deploy": "mkdir public && cp -a frontend/build/. public/",
-    "postinstall": "npm run build && npm run deploy"
+    "heroku-postbuild": "npm run build && npm run deploy"
   },
   "dependencies": {
     "concurrently": "^3.5.1"
