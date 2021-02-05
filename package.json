@@ -4,9 +4,9 @@
     "node": "14.x.x"
   },
   "scripts": {
-    "build": "concurrently \"cd api && npm install\" \"cd frontend && npm install && npm run build\"",
+    "build": "cd api && npm install",
     "deploy": "mkdir api/public && cp -a frontend/build/. api/public/",
-    "heroku-postbuild": "npm run build && npm run deploy"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "concurrently": "^3.5.1"
