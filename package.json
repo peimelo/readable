@@ -4,7 +4,7 @@
     "node": "14.x.x"
   },
   "scripts": {
-    "build": "cd api && npm install",
+    "build": "concurrently \"cd api && npm install\" \"cd frontend && npm install && npm run build\"",
     "deploy": "mkdir api/public && cp -a frontend/build/. api/public/",
     "heroku-postbuild": "npm run build"
   },
