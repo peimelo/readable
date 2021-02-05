@@ -3,6 +3,7 @@
   "engines": {
     "node": "14.x.x"
   },
+  "main": "api/index.js",
   "scripts": {
     "build": "concurrently \"cd api && npm install\" \"cd frontend && npm install && npm run build\"",
     "deploy": "mkdir public && cp -a frontend/build/. public/",
