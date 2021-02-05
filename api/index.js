@@ -115,19 +115,6 @@ app.get('/api', (req, res) => {
   res.send(help)
 });
 
-// app.use((req, res, next) => {
-//   const token = req.get('Authorization');
-
-//   if (token) {
-//     req.token = token;
-//     next()
-//   } else {
-//     res.status(403).send({
-//       error: 'Please provide an Authorization header to identify yourself (can be whatever you want)'
-//     })
-//   }
-// });
-
 app.use('/api', categoriesRouter, auth);
 app.use('/api', commentsRouter, auth);
 app.use('/api', postsRouter, auth);
@@ -136,7 +123,7 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-if (process.env.HEROKU) {
+if (process.env.HEROKU || process.env.NODE_ENV !== 'production') {
   app.listen(config.port, () => {
     console.log('Server listening on port %s, Ctrl+C to stop', config.port)
   });
