@@ -1,6 +1,3 @@
-const clone = require('clone')
-const config = require('./config')
-
 let db = {}
 
 const defaultData = {
