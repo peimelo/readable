@@ -12,7 +12,7 @@ const postsRouter = require('./routes/posts.router');
 
 const app = express();
 
-// app.use(express.static(publicPath));
+app.use(express.static('/app/public'));
 // app.get('/*', (req, res) => {
 //   res.sendFile(`${publicPath}/index.html`);
 // });
