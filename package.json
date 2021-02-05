@@ -6,7 +6,8 @@
   "scripts": {
     "build": "concurrently \"cd api && npm install\" \"cd frontend && npm install && npm run build\"",
     "deploy": "mkdir public && cp -a frontend/build/. public/",
-    "heroku-postbuild": "npm run build && npm run deploy"
+    "heroku-postbuild": "npm run build && npm run deploy",
+    "vercel-build": "cd api && npm install"
   },
   "dependencies": {
     "concurrently": "^3.5.1"
