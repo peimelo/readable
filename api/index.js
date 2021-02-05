@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const config = require('./config');
 
 const categoriesRouter = require('./routes/categories.router');
@@ -12,7 +13,7 @@ const postsRouter = require('./routes/posts.router');
 
 const app = express();
 
-app.use(express.static('/app/public'));
+app.use(express.static(path.join(__dirname, '../public')));
 // app.get('/*', (req, res) => {
 //   res.sendFile(`${publicPath}/index.html`);
 // });
