@@ -1,3 +1,5 @@
+const clone = require('clone')
+
 let db = {}
 
 const defaultData = {
