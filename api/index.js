@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const config = require('./config');
 
 const categoriesRouter = require('./routes/categories.router');
@@ -10,9 +11,9 @@ const postsRouter = require('./routes/posts.router');
 
 const app = express();
 
-app.use(express.static('public', { root: __dirname }));
+app.use(express.static(path.join(__dirname, '../public')));
 app.get('/*', (req, res) => {
-  res.sendFile('public/index.html', { root: __dirname });
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 app.use(cors());
 
