@@ -12,11 +12,7 @@ const postsRouter = require('./routes/posts.router');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public', 'index.html'));
-});
 app.use(cors());
-
 
 app.get('/api', (req, res) => {
   const help = `
@@ -134,6 +130,10 @@ app.use((req, res, next) => {
 app.use('/api', categoriesRouter);
 app.use('/api', commentsRouter);
 app.use('/api', postsRouter);
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});
 
 if (process.env.HEROKU) {
   app.listen(config.port, () => {
