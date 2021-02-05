@@ -12,7 +12,9 @@ const postsRouter = require('./routes/posts.router');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../public')));
+if (process.env.HEROKU) {
+  app.use(express.static(path.join(__dirname, '../public')));
+}
 app.use(cors());
 
 app.get('/api', (req, res) => {
@@ -119,9 +121,11 @@ app.use('/api', categoriesRouter, auth);
 app.use('/api', commentsRouter, auth);
 app.use('/api', postsRouter, auth);
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public', 'index.html'));
-});
+if (process.env.HEROKU) {
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public', 'index.html'));
+  });
+}
 
 if (process.env.HEROKU || process.env.NODE_ENV !== 'production') {
   app.listen(config.port, () => {
