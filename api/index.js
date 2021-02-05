@@ -9,14 +9,12 @@ const categoriesRouter = require('./routes/categories.router');
 const commentsRouter = require('./routes/comments.router');
 const postsRouter = require('./routes/posts.router');
 
-// const publicPath = `${__dirname}/public`;
-
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
-// app.get('/*', (req, res) => {
-//   res.sendFile(`${publicPath}/index.html`);
-// });
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});
 app.use(cors());
 
 
