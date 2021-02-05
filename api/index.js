@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const config = require('./config');
+const auth = require('./middlewares/authorization');
 
 const categoriesRouter = require('./routes/categories.router');
 const commentsRouter = require('./routes/comments.router');
@@ -114,22 +115,22 @@ app.get('/api', (req, res) => {
   res.send(help)
 });
 
-app.use((req, res, next) => {
-  const token = req.get('Authorization');
+// app.use((req, res, next) => {
+//   const token = req.get('Authorization');
 
-  if (token) {
-    req.token = token;
-    next()
-  } else {
-    res.status(403).send({
-      error: 'Please provide an Authorization header to identify yourself (can be whatever you want)'
-    })
-  }
-});
+//   if (token) {
+//     req.token = token;
+//     next()
+//   } else {
+//     res.status(403).send({
+//       error: 'Please provide an Authorization header to identify yourself (can be whatever you want)'
+//     })
+//   }
+// });
 
-app.use('/api', categoriesRouter);
-app.use('/api', commentsRouter);
-app.use('/api', postsRouter);
+app.use('/api', categoriesRouter, auth);
+app.use('/api', commentsRouter, auth);
+app.use('/api', postsRouter, auth);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
