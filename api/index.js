@@ -1,9 +1,6 @@
-require('dotenv').config();
-
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const config = require('./config');
 const auth = require('./middlewares/authorization');
 
 const categoriesRouter = require('./routes/categories.router');
@@ -12,9 +9,7 @@ const postsRouter = require('./routes/posts.router');
 
 const app = express();
 
-if (process.env.HEROKU) {
-  app.use(express.static(path.join(__dirname, '../public')));
-}
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(cors());
 
 app.get('/api', (req, res) => {
@@ -121,15 +116,15 @@ app.use('/api', categoriesRouter, auth);
 app.use('/api', commentsRouter, auth);
 app.use('/api', postsRouter, auth);
 
-if (process.env.HEROKU) {
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'index.html'));
-  });
-}
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});
 
 if (process.env.HEROKU || process.env.NODE_ENV !== 'production') {
-  app.listen(config.port, () => {
-    console.log('Server listening on port %s, Ctrl+C to stop', config.port)
+  const port = process.env.PORT || 3000;
+
+  app.listen(port, () => {
+    console.log('Server listening on port %s, Ctrl+C to stop', port)
   });
 }
 

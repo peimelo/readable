@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Container, Table } from 'reactstrap';
 import { fetchCategories } from '../actions/categories';
 
-const secretApi = process.env.REACT_APP_MY_SECRET_API || 'apiNotWork';
-
 class Categories extends Component {
   componentDidMount() {
     this.props.fetchCategories();
@@ -13,7 +11,7 @@ class Categories extends Component {
   render() {
     return (
       <Container>
-        <h1>{secretApi}</h1>
+        <h1>Categories</h1>
 
         <Table bordered striped hover>
           <thead className="thead-dark">
