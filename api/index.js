@@ -2,18 +2,19 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const config = require('./config');
 
 const categoriesRouter = require('./routes/categories.router');
 const commentsRouter = require('./routes/comments.router');
 const postsRouter = require('./routes/posts.router');
 
+const publicPath = `${__dirname}/public`;
+
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(publicPath));
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+  res.sendFile(`${publicPath}/index.html`);
 });
 app.use(cors());
 

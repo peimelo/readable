@@ -5,7 +5,7 @@
   },
   "scripts": {
     "build": "concurrently \"cd api && npm install\" \"cd frontend && npm install && npm run build\"",
-    "deploy": "mkdir public && cp -a frontend/build/. public/",
+    "deploy": "mkdir api/public && cp -a frontend/build/. api/public/",
     "heroku-postbuild": "npm run build && npm run deploy"
   },
   "dependencies": {
